@@ -1,5 +1,4 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+bookings.get:
+  path: /hotels/{hotelId}/rooms/{roomId}/booking
+  methods: [ GET ]
+  controller: App\Hotels\Bookings\UI\Controller\GetBookingController
