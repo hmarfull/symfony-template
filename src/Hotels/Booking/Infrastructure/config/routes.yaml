@@ -1,0 +1,4 @@
+booking.get:
+  path: /hotels/{hotelId}/rooms/{roomId}/booking
+  methods: [ GET ]
+  controller: App\Hotels\Booking\UI\Controller\GetBookingController

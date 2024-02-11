@@ -1,0 +1,6 @@
+services:
+
+  ## Services
+  App\Hotels\Booking\Domain\BookingSearcher:
+    arguments:
+      - '@App\Hotels\Booking\Infrastructure\Persistence\DoctrineBookingRepository'
