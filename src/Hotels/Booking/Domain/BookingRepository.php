@@ -7,4 +7,6 @@ namespace App\Hotels\Booking\Domain;
 interface BookingRepository
 {
     public function search(HotelId $hotelId, RoomId $roomId): ?Booking;
+
+    public function storeMultiple(Bookings $bookings): void;
 }

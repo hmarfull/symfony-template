@@ -8,6 +8,7 @@ use App\Shared\Domain\Aggregate\AggregateRoot;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Exception\NotSupported;
+use function Lambdish\Phunctional\each;
 
 abstract class DoctrineRepository
 {
@@ -23,13 +24,21 @@ abstract class DoctrineRepository
     protected function persist(AggregateRoot $entity): void
     {
         $this->entityManager()->persist($entity);
-        $this->entityManager()->flush($entity);
+        $this->entityManager()->flush();
+    }
+
+    protected function persistMultiple(AggregateRoot ...$entities): void
+    {
+        each(function ($entity) {
+            $this->entityManager()->persist($entity);
+        }, $entities);
+        $this->entityManager()->flush();
     }
 
     protected function remove(AggregateRoot $entity): void
     {
         $this->entityManager()->remove($entity);
-        $this->entityManager()->flush($entity);
+        $this->entityManager()->flush();
     }
 
     /**
