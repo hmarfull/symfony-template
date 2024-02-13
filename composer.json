@@ -72,6 +72,8 @@
         "behat/behat": "^3.14",
         "fakerphp/faker": "^1.23",
         "friends-of-behat/symfony-extension": "^2.5",
+        "friends-of-behat/mink-extension": "^2.7",
+        "behat/mink-browserkit-driver": "^2.2",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5"

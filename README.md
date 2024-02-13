@@ -2,7 +2,8 @@
 
 ## General Description
 
-I developed this code using Domain-Driven Design (DDD) and Command Query Responsibility Segregation (CQRS) principles trying the code as simple as possible.
+I developed this code using DDD (Hexagonal Architecture, Value Object Pattern, Repository Pattern, etc.) and Command Query Responsibility Segregation (CQRS) trying to keep the code as simple as possible. It may be a bit over-engineered but, it was developed keeping in mind that this would be a bigger and more complex project, and it is test where I should show my knowledge as much as I can.
+I created a module called Booking with two use cases (Search and Populate) placed on the Application folder. 
 
 ## Possible Improvements
 
@@ -31,10 +32,10 @@ In case that different search queries based on different params would be perform
 I should check if the Bookings are already stored and if so don't duplicate them.
 
 ### Create a cron to execute the command to collect the bookings
-Create a cron to collect the bookings as often as needed
+Create a cron to collect the bookings as often as needed.
 
 ### Map exceptions on the controller
+Once the code gets more complex I would map the Exceptions to the corresponding HTTP Response Codes. 
 
-# TODO:
-Test Behat
-Testear el PopulateCommand????
+### Create real behat tests
+Some of the steps defined on the context are mocked.
