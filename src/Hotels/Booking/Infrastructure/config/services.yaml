@@ -4,3 +4,12 @@ services:
   App\Hotels\Booking\Domain\BookingSearcher:
     arguments:
       - '@App\Hotels\Booking\Infrastructure\Persistence\DoctrineBookingRepository'
+      -
+  App\Hotels\Booking\Application\BookingPopulator:
+    arguments:
+      - '@App\Hotels\Booking\Infrastructure\Partners\PmsBookingCollector'
+      - '@App\Hotels\Booking\Infrastructure\Persistence\DoctrineBookingRepository'
+
+  ## Repositories
+  App\Hotels\Booking\Infrastructure\Persistence\DoctrineBookingRepository:
+    - '@doctrine.orm.entity_manager'

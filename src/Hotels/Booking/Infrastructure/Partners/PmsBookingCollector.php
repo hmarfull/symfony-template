@@ -16,7 +16,7 @@ use DateTimeImmutable;
 use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\get;
 
-final class PMSBookingCollector implements BookingCollector
+final class PmsBookingCollector implements BookingCollector
 {
     private const string PMS_URL = 'https://cluster-dev.stay-app.com/sta/pms-faker/stay/test/pms?ts=';
     private const array HOTEL_MAPPER = [
@@ -28,42 +28,48 @@ final class PMSBookingCollector implements BookingCollector
 
     public function collect(DateTimeImmutable $since): Bookings
     {
-        $json = file_get_contents(self::PMS_URL . $since->getTimestamp());
-
-        $response = json_decode($json);
-
-        $items = get('bookings', $response);
+        $items = $this->collectRawBookings($since);
         $bookings = new Bookings();
 
         each(function ($item) use (&$bookings) {
             $guest = get('guest', $item);
-            $pax = get('pax', $item);
+            $booking = get('booking', $item);
+            $pax = get('pax', $booking);
             /** @var BookingId $bookingId */
             $bookingId = BookingId::random();
             $bookings->add(new Booking(
                 $bookingId,
-                new HotelId(get('hotel_id', $item)),
-                new RoomId(get('room_id', $item)),
+                new HotelId(self::HOTEL_MAPPER[get('hotel_id', $item)]),
+                new RoomId(get('room', $booking)),
                 new Guest(
                     get('name', $guest),
                     get('lastname', $guest),
-                    DateTimeImmutable::createFromFormat('Y-m-d', get('room_id', $guest)),
+                    DateTimeImmutable::createFromFormat('Y-m-d', get('birthdate', $guest)),
                     get('passport', $guest),
                     get('country', $guest),
                 ),
-                get('locator', $item),
-                DateTimeImmutable::createFromFormat('Y-m-d', get('check_in', $item)),
-                DateTimeImmutable::createFromFormat('Y-m-d', get('check_out', $item)),
+                get('locator', $booking),
+                DateTimeImmutable::createFromFormat('Y-m-d', get('check_in', $booking)),
+                DateTimeImmutable::createFromFormat('Y-m-d', get('check_out', $booking)),
                 new Pax(
-                    (int)get('adults', $pax),
-                    (int)get('kids', $pax),
-                    (int)get('babies', $pax),
+                    (int) get('adults', $pax),
+                    (int) get('kids', $pax),
+                    (int) get('babies', $pax),
                 ),
                 DateTimeImmutable::createFromFormat('Y-m-d H:i:s', get('created', $item)),
-                get('locator', $item),
+                get('signature', $item),
             ));
         }, $items);
 
         return $bookings;
+    }
+
+    public function collectRawBookings(DateTimeImmutable $since): array
+    {
+        $json = file_get_contents(self::PMS_URL . $since->getTimestamp());
+
+        $response = json_decode($json, true);
+
+        return get('bookings', $response);
     }
 }

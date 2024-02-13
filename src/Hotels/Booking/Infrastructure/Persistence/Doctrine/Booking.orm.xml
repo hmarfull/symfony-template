@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Hotels\Booking\Domain\Booking" table="bookings">
+        <id name="id" type="booking_id" column="id" length="36">
+            <generator strategy="NONE"/>
+        </id>
+        <field name="hotelId" column="hotel_id" type="hotel_id" length="36"/>
+        <field name="roomId" column="room_id" type="room_id" length="36"/>
+        <embedded name="guest" class="App\Hotels\Booking\Domain\Guest" use-column-prefix="false"/>
+        <field name="locator" column="locator" type="string"/>
+        <field name="checkIn" column="check_in" type="datetime_immutable_microseconds"/>
+        <field name="checkOut" column="check_out" type="datetime_immutable_microseconds"/>
+        <embedded name="pax" class="App\Hotels\Booking\Domain\Pax" use-column-prefix="false"/>
+        <field name="created" column="created" type="datetime_immutable_microseconds"/>
+        <field name="signature" column="signature" type="string"/>
+    </entity>
+</doctrine-mapping>

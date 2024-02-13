@@ -30,9 +30,11 @@ In case that different search queries based on different params would be perform
 ### Improve Booking Storage by checking duplicates
 I should check if the Bookings are already stored and if so don't duplicate them.
 
+### Create a cron to execute the command to collect the bookings
+Create a cron to collect the bookings as often as needed
+
+### Map exceptions on the controller
+
 # TODO:
-Echar un ojo al tema excepciones.
-Montar el Docker
 Test Behat
-Comando para el cron
 Testear el PopulateCommand????

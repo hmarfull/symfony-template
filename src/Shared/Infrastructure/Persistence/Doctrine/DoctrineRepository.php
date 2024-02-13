@@ -6,13 +6,14 @@ namespace App\Shared\Infrastructure\Persistence\Doctrine;
 
 use App\Shared\Domain\Aggregate\AggregateRoot;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Exception\NotSupported;
 use function Lambdish\Phunctional\each;
 
 abstract class DoctrineRepository
 {
-    public function __construct(private readonly EntityManager $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
     }
 

@@ -7,6 +7,7 @@ namespace App\Tests\Hotels\Booking\Application;
 use App\Hotels\Booking\Application\Search\BookingResponseConverter;
 use App\Hotels\Booking\Application\Search\SearchBookingQueryHandler;
 use App\Hotels\Booking\Domain\BookingSearcher;
+use App\Hotels\Booking\Infrastructure\Partners\PmsBookingCollector;
 use App\Tests\Hotels\Booking\Domain\BookingStub;
 use App\Tests\Hotels\Booking\Domain\HotelIdStub;
 use App\Tests\Hotels\Booking\Domain\RoomIdStub;

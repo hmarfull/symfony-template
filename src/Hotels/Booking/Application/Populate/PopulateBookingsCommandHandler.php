@@ -14,6 +14,6 @@ final class PopulateBookingsCommandHandler implements CommandHandler
 
     public function __invoke(PopulateBookingsCommand $command): void
     {
-
+        ($this->populator)($command->since());
     }
 }

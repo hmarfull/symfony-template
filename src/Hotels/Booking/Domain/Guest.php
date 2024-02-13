@@ -10,7 +10,7 @@ final readonly class Guest
 {
     public function __construct(
         private string            $name,
-        private string            $lastName,
+        private string            $lastname,
         private DateTimeImmutable $birthdate,
         private string            $passport,
         private string            $country,
@@ -23,9 +23,9 @@ final readonly class Guest
         return $this->name;
     }
 
-    public function lastName(): string
+    public function lastname(): string
     {
-        return $this->lastName;
+        return $this->lastname;
     }
 
     public function birthdate(): DateTimeImmutable
@@ -52,7 +52,7 @@ final readonly class Guest
     {
         return [
             "name" => $this->name,
-            "lastname" => $this->lastName,
+            "lastname" => $this->lastname,
             "birthdate" => $this->birthdate,
             "passport" => $this->passport,
             "country" => $this->country,
