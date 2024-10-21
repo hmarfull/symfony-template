@@ -1,0 +1,4 @@
+discount.get:
+  path: /discount
+  methods: [ POST ]
+  controller: App\Discounts\Infrastructure\Controller\GetOrderDiscountController

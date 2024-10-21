@@ -1,0 +1,10 @@
+services:
+
+  App\Discounts\Domain\DiscountApplicator:
+    arguments:
+      - $customerRepository: '@App\Discounts\Infrastructure\Persistence\JsonCustomerRepository'
+      - $productRepository: '@App\Discounts\Infrastructure\Persistence\JsonProductRepository'
+
+  App\Discounts\Infrastructure\Persistence\JsonCustomerRepository:
+
+  App\Discounts\Infrastructure\Persistence\JsonProductRepository:
