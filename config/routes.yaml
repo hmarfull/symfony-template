@@ -1,4 +1,2 @@
-bookings.get:
-  path: /hotels/{hotelId}/rooms/{roomId}/booking
-  methods: [ GET ]
-  controller: App\Hotels\Bookings\UI\Controller\GetBookingController
+discount:
+  resource: ../src/Discounts/Infrastructure/config/routes.yaml

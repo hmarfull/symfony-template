@@ -17,7 +17,7 @@ framework:
     routing:
       # Route your messages to the transports
       # 'App\Message\YourMessage': async
-      'App\Hotels\Bookings\Application\SearchBookingQuery': sync
+      'App\Discounts\Application\CalculateOrderDiscountQuery': sync
 
 # when@test:
 #    framework:
